@@ -1,0 +1,23 @@
+{
+  "name": "nekoticket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.6.0",
+    "dotenv": "^16.0.0",
+    "pretty-ms": "^7.0.1"
+  },
+  "devDependencies": {
+    "node": "^16.13.2",
+    "nodemon": "^2.0.16"
+  },
+  "description": ""
+}
