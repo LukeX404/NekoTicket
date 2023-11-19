@@ -81,20 +81,8 @@ module.exports = {
                     )                    
             );
 
-            interaction.deferReply();
+        interaction.deferReply();
         interaction.deleteReply();
-
-        const message = await ticketChannel.send({ embeds: [embed], components: [ticketRow] });
-
-        const intervalId = setInterval(() => {
-            ticketRow.components[0].setCustomId('ticketMenu')
-                .setPlaceholder('Selecione uma categoria')
-                .setDisabled(false);
-            message.edit({ components: [ticketRow] });
-        }, 10000);
-
-        while (true) {
-            await new Promise(resolve => setTimeout(resolve, 10000));
-        }
+        return await ticketChannel.send({ embeds: [embed], components: [ticketRow]});
     },
 };

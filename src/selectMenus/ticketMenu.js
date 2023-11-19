@@ -22,28 +22,24 @@ module.exports = {
             }
         }
 
-        let ticketOption = '';
-        let categoryId = '';
+        const categoryMap = {
+            'server': '1175476758213054485',
+            'buystore': '1175476834406768701',
+            'giveaway': '1175476890157449348',
+            'report': '1175477178423590972',
+            'tag': '1175477212573618309',
+            'bug': '1154594889871401026',
+            'sugestao': '1175856564050075760'
+        };
 
-        if (interaction.values[0] === 'server') {
-            categoryId = '1175476758213054485';
-            ticketOption = 'Servidor.';
-        } else if (interaction.values[0] === 'buystore') {
-            categoryId = '1175476834406768701';
-            ticketOption = 'Compras.';
-        } else if (interaction.values[0] === 'giveaway') {
-            categoryId = '1175476890157449348';
-            ticketOption = 'Prêmios.';
-        } else if (interaction.values[0] === 'report') {
-            categoryId = '1175477178423590972';
-            ticketOption = 'Denúncias / Revisão.';
-        } else if (interaction.values[0] === 'tag') {
-            categoryId = '1175477212573618309';
-            ticketOption = 'Tag';
-        } else if (interaction.values[0] === 'bug') {
-            categoryId = '1154594889871401026';
-            ticketOption = 'Bug';
+        const selectedValue = interaction.values[0];
+
+        if (!categoryMap[selectedValue]) {
+            return interaction.reply({ ephemeral: true, content: 'Opção inválida.' });
         }
+
+        const categoryId = categoryMap[selectedValue];
+        const ticketOption = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1);
 
         const ticketChannel = await guild.channels.create({
             name: `${ticketChannelName}`,
@@ -51,19 +47,20 @@ module.exports = {
             parent: categoryId,
             topic: `${interaction.user.id}`,
             permissionOverwrites: [
-				{
-					id: interaction.user.id,
-					allow: [discord.PermissionFlagsBits.SendMessages, discord.PermissionFlagsBits.ViewChannel],
-				},
-				{
-					id: interaction.guild.roles.everyone,
-					deny: [discord.PermissionFlagsBits.ViewChannel],
+                {
+                    id: interaction.user.id,
+                    allow: [discord.PermissionFlagsBits.SendMessages, discord.PermissionFlagsBits.ViewChannel],
+                },
+                {
+                    id: interaction.guild.roles.everyone,
+                    deny: [discord.PermissionFlagsBits.ViewChannel],
                 },
             ],
         });
 
         const ticketMenuEmbed = new discord.EmbedBuilder()
-            .setAuthor({ name: 'RedeNotz Ticket' })
+            .setAuthor({ name: 'Atendimento Rede Notz', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
+            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
             .setDescription('Seja bem vindo(a) ao seu **TICKET**, entraremos em contato em breve.')
             .setColor('#63f542')
             .addFields([
