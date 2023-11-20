@@ -1,4 +1,5 @@
 const discord = require('discord.js');
+const config = require('../config/config.json');
 
 module.exports = {
     config: {
@@ -23,13 +24,13 @@ module.exports = {
         }
 
         const categoryMap = {
-            'server': '1175476758213054485',
-            'buystore': '1175476834406768701',
-            'giveaway': '1175476890157449348',
-            'report': '1175477178423590972',
-            'tag': '1175477212573618309',
-            'bug': '1154594889871401026',
-            'sugestao': '1175856564050075760'
+            'Server': '1175476758213054485',
+            'Compras': '1175476834406768701',
+            'Prêmios': '1175476890157449348',
+            'Denúncias / Revisão': '1175477178423590972',
+            'Tag': '1175477212573618309',
+            'Reportar Bugs': '1154594889871401026',
+            'Sugestão': '1175856564050075760'
         };
 
         const selectedValue = interaction.values[0];
@@ -41,6 +42,7 @@ module.exports = {
         const categoryId = categoryMap[selectedValue];
         const ticketOption = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1);
 
+        const roleToRemoveId = config.roleToRemoveId;
         const ticketChannel = await guild.channels.create({
             name: `${ticketChannelName}`,
             type: discord.ChannelType.GuildText,
@@ -55,12 +57,16 @@ module.exports = {
                     id: interaction.guild.roles.everyone,
                     deny: [discord.PermissionFlagsBits.ViewChannel],
                 },
+                {
+                    id: roleToRemoveId,
+                    allow: [discord.PermissionFlagsBits.SendMessages, discord.PermissionFlagsBits.ViewChannel],
+                },
             ],
         });
 
         const ticketMenuEmbed = new discord.EmbedBuilder()
-            .setAuthor({ name: 'Atendimento Rede Notz', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
-            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
+            .setAuthor({ name: 'Atendimento Rede Notz', iconURL: client.user.displayAvatarURL() })
+            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
             .setDescription('Seja bem vindo(a) ao seu **TICKET**, entraremos em contato em breve.')
             .setColor('#63f542')
             .addFields([
@@ -77,7 +83,15 @@ module.exports = {
                 new discord.ButtonBuilder()
                     .setCustomId('endTicket')
                     .setLabel('Fechar Ticket')
+                    .setEmoji('a:cancel:1157744202449420308')
                     .setStyle('Danger')
+            )
+            .addComponents(
+                new discord.ButtonBuilder()
+                    .setCustomId('claimTicket')
+                    .setLabel('Claim')
+                    .setEmoji('🔐')
+                    .setStyle('Primary')
             )
 
         await ticketChannel.send({ embeds: [ticketMenuEmbed], content: `||<@${interaction.user.id}>||`, components: [ticketButtonsPainel] });

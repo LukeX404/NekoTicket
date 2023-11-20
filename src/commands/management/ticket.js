@@ -12,8 +12,8 @@ module.exports = {
         if (interaction.channel.id !== ticketChannelId) return interaction.reply({ content: `Você não pode utilizar esse comando nesse chat. Utilize ${ticketChannel}` });
 
         const embed = new discord.EmbedBuilder()
-            .setAuthor({ name: 'Atendimento Rede Notz', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
-            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
+            .setAuthor({ name: 'Atendimento Rede Notz', iconURL: client.user.displayAvatarURL() })
+            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
             .setDescription(`- Olá! Nossa equipe está pronta para ajudar com seus problemas e esclarecer suas dúvidas. Estamos disponíveis nos seguintes horários para atendê-lo da melhor forma possível:
 
 **Horário de atendimento: (BRT)**
@@ -39,43 +39,43 @@ module.exports = {
                         {
                             label: 'Servidor',
                             description: 'Tire suas dúvidas referentes ao servidor',
-                            value: 'server',
+                            value: 'Server',
                             emoji: 'a:minegif:1157736187172245614'
                         },
                         {
                             label: 'Compras',
                             description: 'Obtenha ajuda com a loja',
-                            value: 'buystore',
+                            value: 'Compras',
                             emoji: 'emerald:1157761769889087629'
                         },
                         {
                             label: 'Prêmios',
                             description: 'Resgate prêmios',
-                            value: 'giveaway',
+                            value: 'Prêmios',
                             emoji: 'holidaycrate:1157808884883398696'
                         },
                         {
                             label: 'Denúncias / Revisão',
                             description: 'Faça uma denúncia ou revisões de Ban',
-                            value: 'report',
+                            value: 'Denúncias / Revisão',
                             emoji: 'minebarrier:1157737278135861309'
                         },
                         {
                             label: 'Tag',
                             description: 'Solicite sua TAG',
-                            value: 'tag',
+                            value: 'Tag',
                             emoji: 'youtubeemoji:1175858388672970913'
                         },
                         {
                             label: 'Reportar Bugs',
                             description: 'Reporte um BUG',
-                            value: 'bug',
+                            value: 'Reportar Bugs',
                             emoji: '👾'
                         },
                         {
                             label: 'Sugestão',
                             description: 'Dê sugestões para melhorar o servidor',
-                            value: 'sugestao',
+                            value: 'Sugestão',
                             emoji: 'thinkingsteve:1157739978311336117'
                         },
                     )                    
