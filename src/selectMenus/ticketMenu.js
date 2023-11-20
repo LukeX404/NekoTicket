@@ -13,12 +13,12 @@ module.exports = {
         const errorEmbed = new discord.EmbedBuilder()
             .setDescription('Você já possui um ticket aberto! Encerre o atual para abrir um novo.')
             .setColor('2F3136')
-
+             
         for (const channel of guildChannels.values()) {
             if (channel.name.startsWith('ticket')) {
                 let ticketOwnerId = channel.topic;
                 if (ticketOwnerId === interaction.user.id) {
-                    return interaction.reply({ ephemeral: true, embeds: [errorEmbed] });
+                    return interaction.reply({ ephemeral: true, embeds: [errorEmbed], });
                 }
             }
         }
@@ -98,7 +98,7 @@ module.exports = {
 
         const sucessEmbed = new discord.EmbedBuilder()
             .setDescription('Seu ticket foi criado com sucesso.')
-            .setColor('#2f3136')
+            .setColor('#74eb34')
 
         const goToTicketChannelButton = new discord.ActionRowBuilder()
             .addComponents(

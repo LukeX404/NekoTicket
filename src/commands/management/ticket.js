@@ -9,7 +9,7 @@ module.exports = {
     run: async (client, interaction) => {
         if (!interaction.member.permissions.has('Administrator')) return interaction.reply({ content: 'Você não tem permissões para isso.', ephemeral: true });
         const ticketChannel = client.channels.cache.find(channel => channel.id === ticketChannelId);
-        if (interaction.channel.id !== ticketChannelId) return interaction.reply({ content: `Você não pode utilizar esse comando nesse chat. Utilize ${ticketChannel}` });
+        if (interaction.channel.id !== ticketChannelId) return interaction.reply({ content: `Você não pode utilizar esse comando nesse chat. Utilize use ${ticketChannel}` });
 
         const embed = new discord.EmbedBuilder()
             .setAuthor({ name: 'Atendimento Rede Notz', iconURL: client.user.displayAvatarURL() })
@@ -78,6 +78,9 @@ module.exports = {
                             value: 'Sugestão',
                             emoji: 'thinkingsteve:1157739978311336117'
                         },
+
+                        // Mais opções aqii.
+
                     )                    
             );
 

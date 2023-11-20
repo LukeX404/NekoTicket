@@ -9,8 +9,7 @@ module.exports = {
         const canalTranscript = interaction.channel;
 
         try {
-            // Get the user ID of the person who initially opened the ticket
-            const userId = canalTranscript.topic; // Assuming you store the user ID in the channel topic
+            const userId = canalTranscript.topic;
 
             const attachment = await transcript.createTranscript(canalTranscript, {
                 limit: -1,

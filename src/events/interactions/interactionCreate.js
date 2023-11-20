@@ -13,7 +13,7 @@ async function initCommands(client, interaction) {
             .setDescription(`**ERRO:** ${error}`)
             .setColor('#2f3136')
             .setTimestamp()
-            .setFooter({ text: 'Rede Notz', iconURL: 'https://imgs.search.brave.com/pGlxcYi1fxm74v8oac2s54jXGUv1v684TyK9gyzIlZI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iay5p/YnhrLmNvbS5ici8y/MDIzLzA4LzE0LzE0/MTc1OTUwMTY3MDMw/LnBuZw' })
+            .setFooter({ text: 'Rede Notz', iconURL: client.user.displayAvatarURL() })
 
         await interaction.reply({ embeds: [errorEmbed], ephemeral: true });
     }
