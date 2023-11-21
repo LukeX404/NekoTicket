@@ -1,6 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 const transcript = require('discord-html-transcripts');
 
+const closingTickets = new Set();
+
 module.exports = {
     config: {
         customId: 'endTicket',
@@ -9,6 +11,11 @@ module.exports = {
         const canalTranscript = interaction.channel;
 
         try {
+            if (closingTickets.has(canalTranscript.id)) {
+                interaction.reply({ content: 'Este ticket já está sendo fechado.', ephemeral: true });
+                return;
+            }
+
             const userId = canalTranscript.topic;
 
             const attachment = await transcript.createTranscript(canalTranscript, {
@@ -24,6 +31,8 @@ module.exports = {
                 .setDescription('O ticket será fechado em **10 segundos**.')
                 .setColor('#2f3136');
 
+            closingTickets.add(canalTranscript.id);
+
             interaction.deferReply();
             interaction.deleteReply();
             await interaction.channel.send({ embeds: [successEmbed] });
@@ -34,6 +43,8 @@ module.exports = {
                 } catch (err) {
                     console.log(err);
                     return;
+                } finally {
+                    closingTickets.delete(canalTranscript.id);
                 }
 
                 const user = await client.users.fetch(userId);

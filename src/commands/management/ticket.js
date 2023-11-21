@@ -79,7 +79,7 @@ module.exports = {
                             emoji: 'thinkingsteve:1157739978311336117'
                         },
 
-                        // Mais opções aqii.
+                        // Mais opções aqui.
 
                     )                    
             );
