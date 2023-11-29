@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const config = require('../../config/config.json');
 
-// Adicione uma coleção para armazenar IDs de canais claimados
 const claimedChannels = new Set();
 
 module.exports = {
@@ -35,7 +34,6 @@ module.exports = {
                 SendMessages: null,
             });
 
-            // Marca o canal como claimado
             claimedChannels.add(interaction.channel.id);
 
             interaction.deferReply();

@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const transcript = require('discord-html-transcripts');
+const config = require('../../config/config.json');
 
 const closingTickets = new Set();
 
@@ -53,6 +54,13 @@ module.exports = {
                     console.log(`Transcript enviado para ${user.tag}`);
                 } catch (dmError) {
                     console.log(`Não foi possível enviar a mensagem para ${user.tag}. Razão: ${dmError.message}`);
+                }
+
+                const transcriptChannel = client.channels.cache.get(config.transcriptID);
+                if (transcriptChannel) {
+                    transcriptChannel.send({ content: `Transcript do Atendimento: ${canalTranscript.name}:`, files: [attachment] });
+                } else {
+                    console.log(`Canal de transcrição não encontrado. Verifique se o ID do canal está correto no config.json.`);
                 }
 
             }, 10000);

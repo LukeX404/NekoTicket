@@ -1,3 +1,11 @@
+# v1.3.1
+
+- Adicionado Transcript logs para o servidor do Discord
+
+# v1.3.0
+
+- Arrumado BUG de poder clicar no botão varias vezes
+
 # v1.2.1
 
 - Pequenos erros arrumados
