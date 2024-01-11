@@ -69,6 +69,7 @@ module.exports = {
             .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
             .setDescription('Seja bem vindo(a) ao seu **TICKET**, entraremos em contato em breve.')
             .setColor('#63f542')
+            .setTimestamp()
             .addFields([
                 {
                     name: '**MOTIVO**',

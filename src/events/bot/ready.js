@@ -1,6 +1,6 @@
 module.exports = async (client) => {
     const status = [
-		'Rede Notz.',
+		'・ Rede Notz.',
 	];
 	i = 0;
 	client.user.setActivity(status[0]);

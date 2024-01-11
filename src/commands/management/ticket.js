@@ -13,22 +13,23 @@ module.exports = {
 
         const embed = new discord.EmbedBuilder()
             .setAuthor({ name: 'Atendimento Rede Notz', iconURL: client.user.displayAvatarURL() })
-            .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
-            .setDescription(`- Olá! Nossa equipe está pronta para ajudar com seus problemas e esclarecer suas dúvidas. Estamos disponíveis nos seguintes horários para atendê-lo da melhor forma possível:
+            .setFooter({ text: 'Rede Notz © Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
+            .setDescription(`- Olá! Nossa equipe está pronta para ajudar com seus problemas e esclarecer suas dúvidas.
 
 **Horário de atendimento: (BRT)**
 <a:mineclock:1157805406345764925> Segunda a Sexta: **11h** às **22h**
 <a:mineclock:1157805406345764925> Sábado, Domingo e Feriados: **11h** às **18h**
 
 <:nametag:1157809757223141547>**Como criar um ticket?**
-- Selecione no meunu uma das opções abaixo a categoria que esteja precisando de suporte para que nossa equipe possa ajuda ló.
+- Selecione no menu uma das opções abaixo a categoria que esteja precisando de suporte para que nossa equipe possa ajuda ló.
+- O atendimento é realizado de forma privada, somente membros da equipe possui acesso ao atendimento.
 
 > Compreenda que nossa equipe não estará presente 24 horas por dia, porém, dentro dos horários de atendimento, garantimos nossa disponibilidade para atende-lo.
 
 <:mcredstone:1157752049262403605> **Abra um ticket somente caso precise de suporte!**`)
-            .setColor('#0015ff')
-            .setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/-Insert_image_here-.svg/2560px--Insert_image_here-.svg.png')
-            .setImage('https://images-ext-2.discordapp.net/external/h35ppAiq9ENULRpeZpCnGvJvTPbithaJnEzjJRD09Dk/https/i1.sndcdn.com/visuals-000479340132-gGD9WT-original.jpg?width=1020&height=213')
+            .setColor('#993399')
+            .setThumbnail('https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/05/Name_Tag_JE2_BE2.png/revision/latest/thumbnail/width/360/height/360?cb=20191229205433')
+            .setImage('https://i.imgur.com/rfinzyW.png')
 
         const ticketRow = new discord.ActionRowBuilder()
             .addComponents(

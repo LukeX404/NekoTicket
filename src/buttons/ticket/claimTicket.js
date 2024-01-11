@@ -11,17 +11,15 @@ module.exports = {
         const superiorRoleId = config.superiorRoleId;
         try {
             if (!interaction.member.roles.cache.has(superiorRoleId)) {
-                console.log('Usuário não tem permissões necessárias');
                 return interaction.reply({ content: 'Você não tem permissões para isso.', ephemeral: true });
             }
 
             if (claimedChannels.has(interaction.channel.id)) {
-                console.log('Ticket já foi claimado');
-                return interaction.reply({ content: 'Este ticket já foi claimado.', ephemeral: true });
+                return interaction.reply({ content: 'Este ticket já foi assumido.', ephemeral: true });
             }
 
             const claimedEmbed = new EmbedBuilder()
-                .setAuthor({ name: `Ticket foi claimado por ${interaction.member.displayName}`, iconURL: interaction.user.displayAvatarURL() })
+                .setAuthor({ name: `${interaction.member.displayName} Assumiu o ticket`, iconURL: interaction.user.displayAvatarURL() })
                 .setTimestamp()
                 .setColor('#ff0000');
 
