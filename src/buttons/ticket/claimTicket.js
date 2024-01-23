@@ -28,8 +28,13 @@ module.exports = {
 
             await interaction.channel.send({ embeds: [claimedEmbed] });
             await channel.permissionOverwrites.edit(roleToRemovePermissions, {
-                ViewChannel: null,
-                SendMessages: null,
+                ViewChannel: false,
+                SendMessages: false,
+            });
+
+            await channel.permissionOverwrites.edit(superiorRoleId, {
+                ViewChannel: true,
+                SendMessages: true,
             });
 
             claimedChannels.add(interaction.channel.id);

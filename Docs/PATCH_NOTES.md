@@ -1,3 +1,7 @@
+# v1.3.3
+
+- Bug de superiror não poder ver tickets arrumado
+
 # v1.3.1
 
 - Adicionado Transcript logs para o servidor do Discord
