@@ -82,10 +82,10 @@ module.exports = {
 
                         // Mais opções aqui.
 
-                    )                    
+                    )
             );
 
-            interaction.deferReply();
+        interaction.deferReply();
         interaction.deleteReply();
 
         const message = await ticketChannel.send({ embeds: [embed], components: [ticketRow] });

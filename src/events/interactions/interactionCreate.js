@@ -5,7 +5,7 @@ async function initCommands(client, interaction) {
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
     try {
-        if (command.adminOnly === true && !interaction.member.permissions.has('Administrator')) return interaction.reply({ content: 'Você não tem permissões para isto.', ephemeral: true });
+        if (command.adminOnly === true && !interaction.member.permissions.has('Administrator')) return interaction.reply({ content: 'Você não tem permissões para usar este comando.', ephemeral: true });
         await command.run(client, interaction);
     } catch (err) {
         console.error(err);
@@ -26,7 +26,7 @@ async function initInteractionButtons(client, interaction) {
             for (const file of buttons) {
                 const button = require(`../../buttons/${dirs}/${file}`);
                 const customId = button.config.customId;
-                if(!customId) return;
+                if (!customId) return;
                 if (customId === interaction.customId) {
                     button.run(client, interaction);
                 }

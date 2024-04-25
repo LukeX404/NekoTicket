@@ -2,3 +2,8 @@
 node_modules
 discloud.config
 squarecloud.config
+package-lock.json
+
+*
+.zip
+.rar

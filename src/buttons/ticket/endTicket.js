@@ -53,10 +53,10 @@ module.exports = {
                     await user.send({ content: `Transcript do Atendimento: ${canalTranscript.name}:`, files: [attachment] });
                     console.log(`Transcript enviado para ${user.tag}`);
                 } catch (dmError) {
-                    console.log(`Não foi possível enviar a mensagem para ${user.tag}. Razão: ${dmError.message}`);
+                    console.log(`Não foi possível enviar a mensagem para ${user.tag}. Motivo: ${dmError.message}`);
                 }
 
-                const transcriptChannel = client.channels.cache.get(config.transcriptID);
+                const transcriptChannel = client.channels.cache.get(config.transcriptChannelId);
                 if (transcriptChannel) {
                     transcriptChannel.send({ content: `Transcript do Atendimento: ${canalTranscript.name}:`, files: [attachment] });
                 } else {

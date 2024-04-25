@@ -12,7 +12,7 @@ module.exports = (client) => {
 
             console.log(`🎤 O comando ${command.name} foi carregado com sucesso.`);
         }
-    };  
+    };
     client.on('ready', async () => {
         await client.application.commands.set(slashCommands);
     });

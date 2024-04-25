@@ -23,7 +23,7 @@ module.exports = {
                 .setTimestamp()
                 .setColor('#ff0000');
 
-            const roleToRemovePermissions = interaction.guild.roles.cache.get(config.roleToRemoveId);
+            const roleToRemovePermissions = interaction.guild.roles.cache.get(config.staffRoleId);
             const channel = interaction.channel;
 
             await interaction.channel.send({ embeds: [claimedEmbed] });

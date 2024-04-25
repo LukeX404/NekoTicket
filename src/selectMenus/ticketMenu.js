@@ -13,7 +13,7 @@ module.exports = {
         const errorEmbed = new discord.EmbedBuilder()
             .setDescription('Você já possui um ticket aberto! Encerre o atual para abrir um novo.')
             .setColor('2F3136')
-             
+
         for (const channel of guildChannels.values()) {
             if (channel.name.startsWith('ticket')) {
                 let ticketOwnerId = channel.topic;
@@ -42,7 +42,7 @@ module.exports = {
         const categoryId = categoryMap[selectedValue];
         const ticketOption = selectedValue.charAt(0).toUpperCase() + selectedValue.slice(1);
 
-        const roleToRemoveId = config.roleToRemoveId;
+        const staffRoleId = config.staffRoleId;
         const ticketChannel = await guild.channels.create({
             name: `${ticketChannelName}`,
             type: discord.ChannelType.GuildText,
@@ -51,15 +51,25 @@ module.exports = {
             permissionOverwrites: [
                 {
                     id: interaction.user.id,
-                    allow: [discord.PermissionFlagsBits.SendMessages, discord.PermissionFlagsBits.ViewChannel],
+                    allow: [
+                        discord.PermissionFlagsBits.SendMessages,
+                        discord.PermissionFlagsBits.ViewChannel,
+                        discord.PermissionFlagsBits.EmbedLinks,
+                        discord.PermissionFlagsBits.AttachFiles,
+                    ],
                 },
                 {
                     id: interaction.guild.roles.everyone,
-                    deny: [discord.PermissionFlagsBits.ViewChannel],
+                    deny: [
+                        discord.PermissionFlagsBits.ViewChannel
+                    ],
                 },
                 {
-                    id: roleToRemoveId,
-                    allow: [discord.PermissionFlagsBits.SendMessages, discord.PermissionFlagsBits.ViewChannel],
+                    id: staffRoleId,
+                    allow: [
+                        discord.PermissionFlagsBits.SendMessages,
+                        discord.PermissionFlagsBits.ViewChannel
+                    ],
                 },
             ],
         });
@@ -67,16 +77,17 @@ module.exports = {
         const ticketMenuEmbed = new discord.EmbedBuilder()
             .setAuthor({ name: 'Atendimento Rede Notz', iconURL: client.user.displayAvatarURL() })
             .setFooter({ text: 'Rede Notz・Atendimento via Ticket ', iconURL: client.user.displayAvatarURL() })
-            .setDescription('Seja bem vindo(a) ao seu **TICKET**, entraremos em contato em breve.')
+            .setDescription(`Olá! <@${interaction.user.id}> Seja bem-vindo(a) ao seu \`TICKET\`. \n Por favor, descreva detalhadamente o motivo da sua solicitação e em breve entraremos em contato para ajudá-lo(a) da melhor forma possível.`)
             .setColor('#63f542')
-            .setTimestamp()
-            .addFields([
-                {
-                    name: '**MOTIVO**',
-                    value: `\`${ticketOption}\``,
-                    inline: true,
-                }
-            ])
+            .addFields(
+                [
+                    {
+                        name: '**MOTIVO**',
+                        value: `\`${ticketOption}\``,
+                        inline: true,
+                    }
+                ]
+            )
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true, size: 1024 }))
 
         const ticketButtonsPainel = new discord.ActionRowBuilder()
@@ -109,7 +120,7 @@ module.exports = {
                     .setStyle('Link')
             )
 
-        await interaction.reply({embeds: [sucessEmbed], components: [goToTicketChannelButton], ephemeral: true});
+        await interaction.reply({ embeds: [sucessEmbed], components: [goToTicketChannelButton], ephemeral: true });
 
     },
 }
